@@ -115,5 +115,5 @@ module.exports.orderDetails = (orderId, customerId) => {
 }
 
 module.exports.orders = (customerId) => {
-    return Order.find({customer_id: mongoose.Types.ObjectId(customerId)});
+    return Order.find({customer_id: mongoose.Types.ObjectId(customerId)}).sort({order_date : -1});
 }

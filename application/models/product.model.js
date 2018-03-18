@@ -28,6 +28,9 @@ let productSchema = mongoose.Schema({
         type: Date,
         default : Date.now
     },
+    image1 : {
+        type:String
+    },
     modified_at : {
         type: Date,
         default : Date.now

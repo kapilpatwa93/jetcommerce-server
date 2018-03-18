@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+const commonConfig = require('./config/common.config');
+const fs = require('fs');
 const expressValidator = require('express-validator');
 const customValidator = require('./application/common/customvalidator');
 require('./config/mongo.config');
@@ -24,8 +25,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, commonConfig.product_image_path)));
+app.use(express.static(path.join(__dirname, commonConfig.profile_pic_path)));
+if (!fs.existsSync('uploads')){
+    fs.mkdirSync('uploads');
+}
 app.use(expressValidator(customValidator.middlewareObj));
-
+app.use(function(req,res,next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Credentials', false);
+    res.header('Access-Control-Allow-Headers', 'Content-Type,x-access-token,Origin');
+    next();
+});
 /*route files*/
 app.use('/api/', require('./routes/index.route'));
 

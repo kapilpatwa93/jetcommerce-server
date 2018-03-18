@@ -31,7 +31,10 @@ const Pipeline = {
                 "$addFields" : {
                     "products.product_name" : "$product.name",
                     "products.product_description" : "$product.description",
-                    "products.product_price" : "$product.price"
+                    "products.product_price" : "$product.price",
+                    "products.available_quantity" : "$product.available_quantity",
+                    "products.image1" : "$product.image1"
+
                 }
             },
             {
@@ -81,7 +84,9 @@ const Pipeline = {
                 "$addFields" : {
                     "products.product_name" : "$product.name",
                     "products.product_description" : "$product.description",
-                    "products.product_price" : "$product.price"
+                    "products.product_price" : "$product.price",
+                    "products.available_quantity" : "$product.available_quantity",
+                    "products.image1" : "$product.image1"
                 }
             },
             {

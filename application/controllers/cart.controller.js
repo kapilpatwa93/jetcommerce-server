@@ -11,13 +11,18 @@ module.exports.getCart = (req, res, next) => {
     cartRepository.getCart(customer._id)
         .then((data) => {
             if (data.length == 0) {
-                customHelper.sendJsonResponse(res, httpStatus.OK, null, constants.success_message.empty_cart);
+                let responseData = {};
+                responseData.products = [];
+                responseData.cart_total = 0;
+                console.log(responseData);
+                customHelper.sendJsonResponse(res, httpStatus.OK, responseData, constants.success_message.empty_cart);
                 return;
             }
 
             customHelper.sendJsonResponse(res, httpStatus.OK, data[0], null);
             return;
         }).catch((err) => {
+        console.log(err);
         customHelper.sendJsonError(res, err);
         return;
     })
