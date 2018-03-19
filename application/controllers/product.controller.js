@@ -9,6 +9,7 @@ module.exports.getProducts = (req , res, next) => {
             customHelper.sendJsonResponse(res, httpStatus.OK, data, null);
             return;
         }).catch( (err) => {
+        console.log(err);
         customHelper.sendJsonError(res, err);
         return;
     })
