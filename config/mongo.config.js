@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 let gracefulShutdown;
-let dbURI = 'mongodb://localhost/jetshop';
+// let dbURI = 'mongodb://localhost/jetshop';
+let dbURI = 'mongodb://kapilp:jetshop123@cluster0-shard-00-00-ofnc1.mongodb.net:27017,cluster0-shard-00-01-ofnc1.mongodb.net:27017,cluster0-shard-00-02-ofnc1.mongodb.net:27017/jetshop?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
 }
-
 mongoose.connect(dbURI);
 
 // CONNECTION EVENTS
