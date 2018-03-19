@@ -5,11 +5,11 @@ module.exports.getProducts = (req , res, next) => {
 
     productRepository.getProducts()
         .then( (data) => {
-            console.log(data);
+
             customHelper.sendJsonResponse(res, httpStatus.OK, data, null);
             return;
         }).catch( (err) => {
-        console.log(err);
+
         customHelper.sendJsonError(res, err);
         return;
     })
